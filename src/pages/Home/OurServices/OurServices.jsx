@@ -12,32 +12,32 @@ const OurServices = () => {
                 <div className='space-y-4 text-center hover:bg-primary bg-slate-50 rounded p-6'>
                     
                     <img className='mx-auto bg-linear-to-b from-slate-200 to-slate-50 p-3 rounded-full' src={serviceImg}/>
-                    <h4 className='text-2xl font-bold'>Express Standard delivery</h4>
+                    <h4 className='text-2xl font-bold'>NationWide Delivery</h4>
                     <p>We deliver parcels within 24-36 hours in Dhaka, chittagong, Khulna, Sylhet, Rajshahi. Express Delivery available in Dhaka within 4-6 hours from pick-up to drop-off.</p>
                 </div>
                 <div className='space-y-4 text-center hover:bg-primary bg-slate-50 rounded p-6'>
                     <img className='mx-auto bg-linear-to-b from-slate-200 to-slate-50 p-3 rounded-full' src={serviceImg}/>
-                    <h4 className='text-2xl font-bold'>Express Standard delivery</h4>
+                    <h4 className='text-2xl font-bold'>Fulfillment Solution</h4>
                     <p>We deliver parcels within 24-36 hours in Dhaka, chittagong, Khulna, Sylhet, Rajshahi. Express Delivery available in Dhaka within 4-6 hours from pick-up to drop-off.</p>
                 </div>
                 <div className='space-y-4 text-center hover:bg-primary bg-slate-50 rounded p-6'>
                     <img className='mx-auto bg-linear-to-b from-slate-200 to-slate-50 p-3 rounded-full' src={serviceImg}/>
-                    <h4 className='text-2xl font-bold'>Express Standard delivery</h4>
+                    <h4 className='text-2xl font-bold'>Cash on home delivery</h4>
                     <p>We deliver parcels within 24-36 hours in Dhaka, chittagong, Khulna, Sylhet, Rajshahi. Express Delivery available in Dhaka within 4-6 hours from pick-up to drop-off.</p>
                 </div>
                 <div className='space-y-4 text-center hover:bg-primary bg-slate-50 rounded p-6'>
                     <img className='mx-auto bg-linear-to-b from-slate-200 to-slate-50 p-3 rounded-full' src={serviceImg}/>
-                    <h4 className='text-2xl font-bold'>Express Standard delivery</h4>
+                    <h4 className='text-2xl font-bold'>Corporate Services/Contract in logistics</h4>
                     <p>We deliver parcels within 24-36 hours in Dhaka, chittagong, Khulna, Sylhet, Rajshahi. Express Delivery available in Dhaka within 4-6 hours from pick-up to drop-off.</p>
                 </div>
                 <div className='space-y-4 text-center hover:bg-primary bg-slate-50 rounded p-6'>
                     <img className='mx-auto bg-linear-to-b from-slate-200 to-slate-50 p-3 rounded-full' src={serviceImg}/>
-                    <h4 className='text-2xl font-bold'>Express Standard delivery</h4>
+                    <h4 className='text-2xl font-bold'>Express & Standard delivery</h4>
                     <p>We deliver parcels within 24-36 hours in Dhaka, chittagong, Khulna, Sylhet, Rajshahi. Express Delivery available in Dhaka within 4-6 hours from pick-up to drop-off.</p>
                 </div>
                 <div className='space-y-4 hover:bg-primary text-center bg-slate-50 rounded p-6'>
                     <img className='mx-auto bg-linear-to-b from-slate-200 to-slate-50 p-3 rounded-full' src={serviceImg}/>
-                    <h4 className='text-2xl font-bold'>Express Standard delivery</h4>
+                    <h4 className='text-2xl font-bold'>Parcel Return</h4>
                     <p>We deliver parcels within 24-36 hours in Dhaka, chittagong, Khulna, Sylhet, Rajshahi. Express Delivery available in Dhaka within 4-6 hours from pick-up to drop-off.</p>
                 </div>
             </div>
