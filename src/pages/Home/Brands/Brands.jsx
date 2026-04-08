@@ -13,14 +13,14 @@ import { Autoplay } from 'swiper/modules';
 
 const Brands = () => {
     return (
-        <div className='my-14 space-y-8'>
+        <div className='my-24 space-y-8'>
             <h1 className='text-4xl font-extrabold mb-10 text-secondary text-center'>We've helped thousands of sales teams</h1>
             <Swiper
                 slidesPerView={4}
+                loop={true}
                 centeredSlides={true}
                 spaceBetween={30}
                 grabCursor={true}
-                loop={true}
                 autoplay={{
                     delay: 1000,
                     disableOnInteraction: false,
