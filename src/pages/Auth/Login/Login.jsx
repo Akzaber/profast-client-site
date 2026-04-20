@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
 import { Link } from 'react-router';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -37,6 +38,7 @@ const Login = () => {
                 </fieldset>
                 <p>New to ProFast <Link className='text-secondary font-bold underline' to='/register'>Register Now</Link></p>
             </form>
+            <SocialLogin></SocialLogin>
         </div>
     );
 };
