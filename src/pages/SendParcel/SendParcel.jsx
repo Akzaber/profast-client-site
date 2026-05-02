@@ -2,9 +2,21 @@ import React from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAuth from '../../hooks/useAuth';
 
 const SendParcel = () => {
-    const { register, handleSubmit, control, formState: { errors } } = useForm();
+    const { 
+        register, 
+        handleSubmit, 
+        control, 
+        // formState: { errors } 
+    } 
+        = useForm();
+
+    const {user} = useAuth();    
+    const axiosSecure = useAxiosSecure();
+
     const serviceCenters = useLoaderData();
     const regionsDuplicate = serviceCenters.map(c => c.region);
     const regions = [...new Set(regionsDuplicate)];
@@ -50,11 +62,20 @@ const SendParcel = () => {
             cancelButtonColor: "#d33",
             confirmButtonText: "I agree!"
         }).then((result) => {
-            if (result.isConfirmed) Swal.fire({
-                // title: "Deleted!",
-                // text: "Your file has been deleted.",
-                // icon: "success"
+            if (result.isConfirmed) {
+
+            //save the parcel info to the database
+            axiosSecure.post('/parcels', data)
+            .then(res => {
+                console.log('after saving parcel', res.data)
             });
+
+            //     Swal.fire({
+            //     title: "Deleted!",
+            //     text: "Your file has been deleted.",
+            //     icon: "success"
+            // });
+            }
         });
     }
     return (
@@ -93,10 +114,11 @@ const SendParcel = () => {
                         <h2 className="text-2xl font-semibold">Sender Details</h2>
                         {/* sender name */}
                         <label className="label">Sender Name</label>
-                        <input type="text" {...register('senderName', { required: true })} className="input w-full" placeholder="Sender Name" />
+                        <input type="text" {...register('senderName', { required: true })} defaultValue={user?.displayName} className="input w-full" placeholder="Sender Name" />
                         {/* sender Email */}
                         <label className="label mt-4">Sender Email</label>
-                        <input type="email" {...register('senderEmail', { required: true })} className="input w-full" placeholder="Sender Email" />
+                        <input type="email" {...register('senderEmail', { required: true })} defaultValue={user?.email }
+                        className="input w-full" placeholder="Sender Email" />
 
                         {/* sender region */}
                         <fieldset className="fieldset">
