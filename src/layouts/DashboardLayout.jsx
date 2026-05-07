@@ -1,4 +1,5 @@
 import React from 'react';
+import { CiDeliveryTruck } from 'react-icons/ci';
 import { Link, NavLink, Outlet } from 'react-router';
 
 const DashboardLayout = () => {
@@ -34,7 +35,9 @@ const DashboardLayout = () => {
 
                         {/* Our dashboard links */}
                         <li>
-                            <NavLink to="/dashboard/my-parcels">My-Parcels</NavLink>
+                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="myParcels" to="/dashboard/my-parcels">
+                            <CiDeliveryTruck className="my-1.5 inline-block size-4 " />
+                            <span className="is-drawer-close:hidden">My-Parcels</span></NavLink>
                         </li>
 
                         {/* List item */}
