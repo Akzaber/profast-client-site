@@ -9,6 +9,7 @@ import { Link } from 'react-router';
 
 const MyParcels = () => {
     const { user } = useAuth();
+    console.log(user.email);
     const axiosSecure = useAxiosSecure();
     const { data: parcels = [], refetch } = useQuery({
         queryKey: ['myParcels', user?.email],
@@ -17,6 +18,18 @@ const MyParcels = () => {
             return res.data;
         }
     })
+
+    const handlePayment = async(parcel) => {
+        const paymentInfo = {
+            cost: parcel.cost,
+            parcelId: parcel._id,
+            senderEmail: parcel.senderEmail,
+            parcelName: parcel.parcelName
+        }
+        const res = await axiosSecure.post('/payment-checkout-session', paymentInfo);
+        window.location.assign(res.data.url);
+        console.log(res.data.url);
+    }
 
     const handleParcelDelete = id => {
         console.log(id);
@@ -79,9 +92,8 @@ const MyParcels = () => {
                                         parcel.paymentStatus === 'paid'? 
                                         <span className='text-green-500'>Paid</span>
                                         :
-                                        <Link to={`/dashboard/payment/${parcel._id}`}>
-                                            <button className="btn btn-sm btn-primary text-black">Pay</button>
-                                        </Link>
+                                        <button onClick={() => handlePayment(parcel)} className="btn btn-sm btn-primary text-black">Pay</button>
+                                        
                                     }
                                 </td>
                                 <td>{parcel.deliveryStatus}</td>

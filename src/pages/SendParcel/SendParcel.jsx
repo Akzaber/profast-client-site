@@ -1,20 +1,20 @@
 import React from 'react';
 import { useForm, useWatch } from 'react-hook-form';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
 
 const SendParcel = () => {
-    const { 
-        register, 
-        handleSubmit, 
-        control, 
+    const {
+        register,
+        handleSubmit,
+        control,
         // formState: { errors } 
-    } 
+    }
         = useForm();
 
-    const {user} = useAuth();    
+    const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
 
     const serviceCenters = useLoaderData();
@@ -22,6 +22,7 @@ const SendParcel = () => {
     const regions = [...new Set(regionsDuplicate)];
     const senderRegion = useWatch({ control, name: "senderRegion" });
     const receiverRegion = useWatch({ control, name: "receiverRegion" });
+    const navigate = useNavigate();
 
     const districtByRegion = region => {
         const regionDistrict = serviceCenters.filter(c => c.region === region);
@@ -61,21 +62,31 @@ const SendParcel = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "I agree!"
+            confirmButtonText: "Confirm and Continue Payment!"
         }).then((result) => {
             if (result.isConfirmed) {
 
-            //save the parcel info to the database
-            axiosSecure.post('/parcels', data)
-            .then(res => {
-                console.log('after saving parcel', res.data)
-            });
+                //save the parcel info to the database
+                axiosSecure.post('/parcels', data)
+                    .then(res => {
+                        console.log('after saving parcel', res.data);
+                        if (res.data.insertedId) {
+                            navigate('/dashboard/my-parcels')
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Parcel has created. Please Pay...",
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        }
+                    });
 
-            //     Swal.fire({
-            //     title: "Deleted!",
-            //     text: "Your file has been deleted.",
-            //     icon: "success"
-            // });
+                //     Swal.fire({
+                //     title: "Deleted!",
+                //     text: "Your file has been deleted.",
+                //     icon: "success"
+                // });
             }
         });
     }
@@ -118,8 +129,8 @@ const SendParcel = () => {
                         <input type="text" {...register('senderName', { required: true })} defaultValue={user?.displayName} className="input w-full" placeholder="Sender Name" />
                         {/* sender Email */}
                         <label className="label mt-4">Sender Email</label>
-                        <input type="email" {...register('senderEmail', { required: true })} defaultValue={user?.email }
-                        className="input w-full" placeholder="Sender Email" />
+                        <input type="email" {...register('senderEmail', { required: true })} defaultValue={user?.email}
+                            className="input w-full" placeholder="Sender Email" />
 
                         {/* sender region */}
                         <fieldset className="fieldset">
