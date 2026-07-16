@@ -5,25 +5,26 @@ import useAuth from '../../../hooks/useAuth';
 
 const Navbar = () => {
 
-    const {user, logOut} = useAuth();
+    const { user, logOut } = useAuth();
 
     const handleLogOut = () => {
         logOut()
-        .then()
-        .catch(error => {
-            console.log(error);
-        })
+            .then()
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     const navItems = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/about">About Us</NavLink></li>
         <li><NavLink to="/send-parcel">Send Parcel</NavLink></li>
+        <li><NavLink to="/rider">Be a Rider</NavLink></li>
         <li><NavLink to="/coverage">Coverage</NavLink></li>
-        
+
         {
             user && <>
-            <li><NavLink to="/dashboard/my-parcels">My Parcel</NavLink></li>
+                <li><NavLink to="/dashboard/my-parcels">My Parcel</NavLink></li>
             </>
         }
     </>
@@ -49,7 +50,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {user ? <a onClick={handleLogOut} className="btn">Log out</a> : <Link to="/login" className="btn">Log in</Link>}
-                <Link to="/raider" className="btn btn-primary mx-3 text-black">Be a Raider</Link>
+                <Link to="/rider" className="btn btn-primary mx-3 text-black">Be a Rider</Link>
             </div>
         </div>
     );
