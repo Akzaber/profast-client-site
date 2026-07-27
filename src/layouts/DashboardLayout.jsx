@@ -4,6 +4,9 @@ import { CiDeliveryTruck } from 'react-icons/ci';
 import { FaMotorcycle, FaUsers } from 'react-icons/fa6';
 import { Link, NavLink, Outlet } from 'react-router';
 import useRole from '../hooks/useRole';
+import { PiPersonSimpleBikeBold } from 'react-icons/pi';
+import { FaTasks } from 'react-icons/fa';
+import { SiGoogletasks } from 'react-icons/si';
 
 const DashboardLayout = () => {
     const { role } = useRole();
@@ -49,6 +52,24 @@ const DashboardLayout = () => {
                                 <span className="is-drawer-close:hidden">
                                     Payment-History</span></NavLink>
                         </li>
+                        {/* Rider only links */}
+                        {
+                            role === 'rider' && <>
+                                <li>
+                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assigned Deliveries" to="/dashboard/assigned-deliveries">
+                                        <FaTasks className="my-1.5 inline-block size-4" />
+                                        <span className="is-drawer-close:hidden">
+                                            Assigned Deliveries</span></NavLink>
+                                </li>
+                                <li>
+                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Completed Deliveries" to="/dashboard/completed-deliveries">
+                                        <SiGoogletasks className="my-1.5 inline-block size-4" />
+                                        <span className="is-drawer-close:hidden">
+                                            Completed Deliveries</span></NavLink>
+                                </li>
+                            </>
+                        }
+                        {/* Admin only links */}
                         {
                             role === 'admin' && <>
                                 <li>
@@ -56,6 +77,12 @@ const DashboardLayout = () => {
                                         <FaMotorcycle className="my-1.5 inline-block size-4" />
                                         <span className="is-drawer-close:hidden">
                                             Approve Riders</span></NavLink>
+                                </li>
+                                <li>
+                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assign Riders" to="/dashboard/assign-riders">
+                                        <PiPersonSimpleBikeBold className="my-1.5 inline-block size-4" />
+                                        <span className="is-drawer-close:hidden">
+                                            Assign Riders</span></NavLink>
                                 </li>
                                 <li>
                                     <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Users Management" to="/dashboard/users-management">
